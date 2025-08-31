@@ -1,0 +1,33 @@
+# Virtualenv
+venv/
+ENV/
+env/
+.venv/
+
+# Compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Bancos de dados locais
+*.db
+*.sqlite3
+
+# Arquivos de configuração local / segredos
+.env
+*.env
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Dados pesados de vídeo
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db

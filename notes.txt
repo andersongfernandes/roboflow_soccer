@@ -1,0 +1,161 @@
+cmd
+cd C:\Users\Live\Documents\roboflow_soccer
+
+- - -
+
+> ambiente virtual
+
+instalar
+virtualenv venv
+
+subir 
+.\venv\Scripts\Activate 
+
+criar
+python -m venv venv
+
+baixar
+deactivate
+
+Instalar dependências básicas
+pip install flask python-dotenv
+
+Rodar o servidor
+flask run
+ou
+python app.py
+
+
+- - -
+
+subir aplicacao
+flask --app app run --debug
+
+video tutorial para subir na digital ocean
+https://www.youtube.com/watch?v=mCXJV7aDAnk
+
+comando para deploy
+gunicorn --worker-tmp-dir /dev/shm app:app
+
+url temporaria
+https://orca-app-2-lv27x.ondigitalocean.app/
+
+
+- - -
+
+gitHub
+git add .
+git commit - m "commite explicacao"
+git push
+
+desfazer gitHub
+add: git reset
+commit: git reset --soft HEAD~1 (somente o commit) ou git reset --mixed HEAD~1 (commit e add)
+forcar push: git push --force
+
+
+digital ocean - commands 
+
+Build Command
+None
+
+Run Command
+gunicorn --worker-tmp-dir /dev/shm app:app
+
+
+- - -
+
+> requirements.txt
+
+criar
+pip freeze > requirements.txt
+
+instalar dependencias a partir de requirements.txt
+pip install -r requirements.txt --force-reinstall
+
+
+deactivate
+
+
+- - -
+
+lista os arquivos filtrando pelos maiores
+dir /s /b /o-s | findstr /R "^.* [0-9][0-9]* " | more
+
+
+Sugestões rápidas pra evitar dor de cabeça no futuro:
+
+Congele o ambiente atual:
+
+pip freeze | Out-File -Encoding utf8 requirements.txt
+
+
+(Opcional) Reproduza em outra máquina:
+
+python -m venv .venv ; .\.venv\Scripts\Activate.ps1 ; pip install -r requirements.txt
+
+
+Checar conflitos sempre que atualizar algo:
+
+pip install -U <pacote> ; pip check
+
+
+Se um pacote “puxar” upgrades indesejados, instale com constraint:
+
+pip install -r requirements.txt -c requirements.txt
+
+
+🔹 Passo a passo
+1. Crie um repositório no GitHub
+
+Vá em https://github.com/new
+
+Dê um nome para o repositório (ex.: football-tracking)
+
+Escolha público ou privado
+
+NÃO adicione README, .gitignore ou LICENSE (vamos criar localmente).
+
+2. Dentro da sua pasta do projeto
+
+No terminal:
+
+# inicializa o git
+git init
+
+# adiciona o repositório remoto (troque pela URL do seu repo)
+git remote add origin https://github.com/seu-usuario/football-tracking.git
+
+3. Crie um .gitignore
+
+Para não subir a virtualenv e arquivos desnecessários:
+
+echo "venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.env
+*.mp4
+*.avi
+*.mkv
+" > .gitignore
+
+
+Isso garante que sua pasta venv/ e os vídeos não sejam enviados ao GitHub.
+
+4. Crie um requirements.txt
+
+Assim quem clonar pode instalar as libs certas:
+
+pip freeze > requirements.txt
+
+5. Adicione e faça o primeiro commit
+git add .
+git commit -m "primeiro commit - código de tracking de jogadores e keypoints"
+
+6. Suba para o GitHub
+git branch -M main
+git push -u origin main
