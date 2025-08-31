@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import supervision as sv
+from sports.common.team import TeamClassifier
 import os
 os.environ["ONNXRUNTIME_EXECUTION_PROVIDERS"] = "[DmlExecutionProvider, CPUExecutionProvider]"
 
@@ -23,8 +24,9 @@ PLAYER_DETECTION_MODEL = get_model(
 )
 SOURCE_VIDEO_PATH = "video_data/match.mp4"
 BALL_ID = 0
+GOALKEEPER_ID = 1
 PLAYER_ID = 2
-STRIDE = 30
+REFERRE_ID = 3
 
 ellipse_annotator = sv.EllipseAnnotator(
     color=sv.ColorPalette.from_hex(['#00BFFF', '#FF1493', '#FFD700']),
@@ -60,5 +62,7 @@ def extract_crops(source_video_path: str):
     return crops
 
 crops = extract_crops(SOURCE_VIDEO_PATH)
+team_classifier = TeamClassifier(device=DEVICE)
+team_classifier.fit(crops)
 
 
